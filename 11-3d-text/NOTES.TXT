@@ -1,0 +1,7 @@
+creating a text geometry is long and hard for the computer.  Avois=d doing it too many times and keep the geometry as low poly possible by reducing the curveSegments and bevelSegments.
+Remove the wireframe once happy with the level of details.
+
+Center the text :- We have multiple way.
+   . using the bounding : The bounding is an information associated with the geometry that tells what space is takenby that geometry.It can be a box or a sphere.
+   It helps Three.js calculate if the object is on the screen (frustum culling) . We are going to use the bounding measures to recenter the geometry.
+   The result is an instance of Box3 with min and max properties . The min property isn't at 0 because of the bevelThickness and bevelSize.

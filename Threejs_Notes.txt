@@ -1,0 +1,7 @@
+What is bundler?
+A bundler is a tool used in web development that processes the source files of an application into static assets utilised by browsers. The primary purpose of bundlers is to organise modules and dependencies in front-end projects, optimise website performance, and reduce file sizes.
+
+Note : we can put objects inside a group and use position , rotation (or quarternion) and scale on those groups. { const group = new THREE.Group() } don't forget to add group in scene. Than add object in the cube.
+
+The purpose of requestAnimationFrame is to call a function provided on the next frame . We are going to call the same function on each new frame .
+

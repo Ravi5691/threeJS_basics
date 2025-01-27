@@ -1,0 +1,13 @@
+Material are used to put a color on each visible pixel of the geometrices . The algo are writtens in programs called shaders .
+We don't need  to write shaders and we can use built-in materials.
+
+Github repo for this :- https://github.com/nidorx/matcaps
+
+MeshLamberMaterial have anew properties related to lights but we will see those later with a more adequete material.
+It's performant but  we can see strange patterns on the geometry.
+
+in MeshToon we add gradient texture We see a gradient instead of a clear separtion because the gradient is small and magFilter tries to fix it with the mipmapping.
+To cover this problem we set the minFilter and magFilter to THREE.NearestFilter . We can also deactivate the mipmapping with gradientTexture.generateMipmaps = False  .
+
+MeshStandardMaterial uses physically based rendering principles (PBR) Like MeshLambertMaterial and MeshPhongMaterial, it supports lights but with a more realistic algo and better parameter like roughness and metalness.
+aoMap (ambient occlusion map) will add shadows where the texture is dark We must add a second set od uv named uv2.
