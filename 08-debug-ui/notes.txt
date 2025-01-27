@@ -1,0 +1,13 @@
+We need to be able to tweak and debug easily. 
+It conserns the developer, the designer and even the client. 
+It will help finding the perfect  color, speed , quantity, etc.
+we can create our own ui or we use library
+  . dat.GUI
+  . control-panel
+  . ControlKit
+  . Guify
+  . Oui
+
+In this i use dat.GUI : [ npm i dat.gui ]
+Add element in the debug ui  panel
+  gui.add( position , 'axis' , min , max , steps or precision)

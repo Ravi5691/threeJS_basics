@@ -1,0 +1,10 @@
+const camera = new THREE.PrespectiveCamera( field of view , aspect ratio , near , far  )
+
+field of view (fov) :- vertical vision angle , in degree 
+aspect ratio :- the width of the render divided by the height of the render
+near and far :- corresponding to how camera close and far can see. An object or part of the object closer than near or futher than far will not show up.
+
+
+Orthographc camera is differ from the prospective camera by its lack of prespective object has the same size regardless of their distance to the camera.
+
+We have different controls on the camera check it in the documentation with example. In this we use orbit controls .

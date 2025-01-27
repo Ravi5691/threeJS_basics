@@ -1,0 +1,42 @@
+there are many texture in the threejs like metalness , roughness , etc
+Those textures (especially themetalness and the roughness) follows the PBR principle.
+. physically based rendering
+. many technics that tends to follow real-life directions to get realistic results.
+. becoming the standard for realistic renders.
+. many software ,  engines and libraries are using it.
+if we look at the cube's top face while this face is almost hidden we will see a blurry texture.
+That is do to the filtering and the mapping.
+ . Mipmapping is a technique that consits of creating half a smaller version of a texture again again until we get a 1x1 texture.
+ . All those texture variation are sent to the gpu and the gpu will choose the most appropriate version of the texture.
+ . All of this is already handled by thrre.js and the gpu but we can choose different algorithms
+ There are two algorithms
+  . MinficationFilter : happens when the pixels of texture are smaller than the pixels of the render . in other word the texture is too big for the surface it covers.
+  . MagFicationFilter : 
+
+
+----------------------Important point to be noted--------------------------------
+
+the users will have to download the textures choose the right type of file.
+ . jpg - lossy compression but usually lighter.
+ . png - lossless compression but usually heavier.
+You can use compression websites and software like TinyPNG.
+
+sizes - Each pixels of the texture will have to be stored on the gpu regardless of the image weight.
+GPU has storage limitation , It's even worse because mipmapping inc the numbers of pixels to store { try to reduce the sizes of your images as much as possible }
+
+Mipmapping will produces a half smaller version of the texture repeatedly until 1x1
+beacuse of that the texture width and height must be a power of 2
+ . 512x512
+ . 1024x1024
+ . 512x2048
+
+Texture support transparecy but we can't have transperancy in .jpg . If we want to have only one texture that combine color and alpha we better use .png file.
+
+If we using a normal texture we want to have the exact values which is why we shouldn't apply lossy compression and we better use .png for thoose.
+sometime we can comn=bine different data into one texture by using the red green blue and alpha channel sseparatly.
+The difficulty is to find the rigth combination of texture formate and resolutions.
+Where to find texture ????? --->  It's always hard to find the perfect texture a good start would br to search on the web {
+    . poliigon.com
+    . 3dtextures.com
+    . arroway-textures.ch
+}

@@ -1,0 +1,22 @@
+there are 6 parameter in cube shape or some other shape i don't know now.
+width : the size on the x -axis
+height : the size on the y-axis
+depth : the size on the z -axis
+
+widthSegments : how many subdivision in the xaxis
+heightSegments : how many subdivision in the y-axis
+depthSegments : how many subdivisions in the z-axis
+
+subdivision corresponding to how much traingles should compose a face 
+1 = 2 traingles per face
+2 = 8 traingles per face 
+
+Before creating a geometry we need to understand how to store bufer geometry data
+. We are going to use Float32Array
+  . typed array
+  . can only store floats
+  . fixed length
+  . easier to handle for the computer
+
+some geometry have faces that share common vertices.
+When creating  a buffergeometry we can specify a bunch of vertices and then the indices to create the faces and re-use vertices multiple times.
