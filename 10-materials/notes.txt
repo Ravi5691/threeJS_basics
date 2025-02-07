@@ -11,3 +11,9 @@ To cover this problem we set the minFilter and magFilter to THREE.NearestFilter 
 
 MeshStandardMaterial uses physically based rendering principles (PBR) Like MeshLambertMaterial and MeshPhongMaterial, it supports lights but with a more realistic algo and better parameter like roughness and metalness.
 aoMap (ambient occlusion map) will add shadows where the texture is dark We must add a second set od uv named uv2.
+
+for environment we can use a free website - hdrihaven
+For use environment we use cubeTextureLoader.
+for more knowledge about the environment see the docs
+
+https://matheowis.github.io/HDRI-to-CubeMap/ site for the hdri img to the 6 file 

@@ -15,6 +15,7 @@ const scene = new THREE.Scene()
 
 //texture loader
 const textureLoader = new THREE.TextureLoader()
+const cubeTextureLoader = new THREE.CubeTextureLoader()
 const doorColorTexture = textureLoader.load('/textures/door/color.jpg')
 const doorAlphaTexture = textureLoader.load('/textures/door/alpha.jpg')
 const doorHeightTexture = textureLoader.load('/textures/door/height.jpg')
@@ -38,7 +39,21 @@ gradientTexture.magFilter = THREE.NearestFilter
 // const material = new THREE.MeshPhongMaterial()
 // const material = new THREE.MeshToonMaterial()
 // material.gradientMap = gradientTexture
+
+
 const material = new THREE.MeshStandardMaterial()
+
+// envirinment 
+const environment = cubeTextureLoader.load(
+    '/textures/environmentMap/Standard-Cube-Map/nx.png',
+    '/textures/environmentMap/Standard-Cube-Map/ny.png',
+    '/textures/environmentMap/Standard-Cube-Map/nz.png',
+    '/textures/environmentMap/Standard-Cube-Map/px.png',
+    '/textures/environmentMap/Standard-Cube-Map/py.png',
+    '/textures/environmentMap/Standard-Cube-Map/pz.png',  
+  )
+material.envMap = environment
+
 material.metalness = 0
 material.roughness = 1
 //Instead of specifying uniform metalness and roughness for the whole geometry, we can metalnessMap and roughnessMap.
@@ -46,17 +61,18 @@ material.metalnessMap = doorMetalnessTexture
 material.roughnessMap = doorRoughnessTexture
 gui.add(material , 'metalness').min(0).max(1).step(0.00001)
 gui.add(material , 'roughness').min(0).max(1).step(0.00001)
-material.map = doorColorTexture
-material.aoMap = doorAmibientOcclusionTexture
+// material.map = doorColorTexture
+// material.aoMap = doorAmibientOcclusionTexture
 material.aoMapIntensity = 1
 gui.add(material , 'aoMapIntensity').min(0).max(10).step(0.0001)
-material.normalMap = doorNormalTexture
-material.normalScale.set(10 ,10)
-material.alphaMap = doorAlphaTexture
-material.displacementMap = doorHeightTexture 
+// material.normalMap = doorNormalTexture
+// material.normalScale.set(10 ,10)
+// material.alphaMap = doorAlphaTexture
+// material.displacementMap = doorHeightTexture 
 // it look terrible because it lacks vertices and the displacement is way too strong.
 material.displacementScale = 0.10
 gui.add(material , 'displacementScale').min(0).max(1).step(0.0001)
+
 
 
 // material.shininess = 100
