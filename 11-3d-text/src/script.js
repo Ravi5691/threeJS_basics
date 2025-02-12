@@ -6,14 +6,12 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
 
 
 
-const mesh = new THREE.Mesh(
-
-)
+const mesh = new THREE.Mesh()
 /**
  * Base
  */
 // Debug
-const gui = new GUI()
+// const gui = new GUI()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -21,8 +19,8 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-const axisHelper = new THREE.AxesHelper()
-scene.add(axisHelper)
+// const axisHelper = new THREE.AxesHelper()
+// scene.add(axisHelper)
 
 /**
  * Textures
@@ -37,17 +35,17 @@ fontLoader.load(
     '/fonts/helvetiker_regular.typeface.json',
     (font) => {
         const textGeometry = new TextGeometry(
-            'Ravider',{
-                font : font,
-                size : 1,
-                height : 0.3,
-                curveSegments : 12,
-                bevelEnabled : true,
-                bevelThickness : 0.03,
-                bevelSize : 0.02,
-                bevelOffset : 0,
-                bevelSegments  : 5,
-            }
+            'Ravinder', {
+            font: font,
+            size: 1,
+            height: 0.3,
+            curveSegments: 12,
+            bevelEnabled: true,
+            bevelThickness: 0.03,
+            bevelSize: 0.02,
+            bevelOffset: 0,
+            bevelSegments: 5,
+        }
         )
         textGeometry.computeBoundingBox()
         // console.log(textGeometry.boundingBox)
@@ -60,26 +58,25 @@ fontLoader.load(
         const textMaterial = new THREE.MeshMatcapMaterial()
         textMaterial.matcap = matcap
         textMaterial.wireframe = false
-        const text = new THREE.Mesh(textGeometry , textMaterial)
+        const text = new THREE.Mesh(textGeometry, textMaterial)
         scene.add(text)
 
         console.time('donuts')
 
-         const donutGeometry = new THREE.TorusGeometry(0.3 , 0.2 , 20 , 45)
-         const donutMaterial = new THREE.MeshMatcapMaterial()
-         donutMaterial.matcap = matcapTexture
+        const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45)
+        const donutMaterial = new THREE.MeshMatcapMaterial()
+        donutMaterial.matcap = matcapTexture
 
-        for(let i = 0 ; i<300 ; i++)
-        {
+        for (let i = 0; i < 300; i++) {
             // we can put following comment line outside the loop for time optimization .  
             // const donutGeometry = new THREE.TorusGeometry(0.3 , 0.2 , 20 , 45)
             // const donutMaterial = new THREE.MeshMatcapMaterial()
             // donutMaterial.matcap = matcapTexture
-            const donut = new THREE.Mesh( donutGeometry , donutMaterial)
-            
-            donut.position.x = (Math.random() - 0.5) *10
-            donut.position.y = (Math.random() - 0.5) *10
-            donut.position.z = (Math.random() - 0.5) *10
+            const donut = new THREE.Mesh(donutGeometry, donutMaterial)
+
+            donut.position.x = (Math.random() - 0.5) * 10
+            donut.position.y = (Math.random() - 0.5) * 10
+            donut.position.z = (Math.random() - 0.5) * 10
 
             donut.rotation.x = Math.random() * Math.PI
             donut.rotation.y = Math.random() * Math.PI
@@ -102,8 +99,7 @@ const sizes = {
     height: window.innerHeight
 }
 
-window.addEventListener('resize', () =>
-{
+window.addEventListener('resize', () => {
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
@@ -145,8 +141,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  */
 const clock = new THREE.Clock()
 
-const tick = () =>
-{
+const tick = () => {
     const elapsedTime = clock.getElapsedTime()
 
     // Update controls
