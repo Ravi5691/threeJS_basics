@@ -2,6 +2,9 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import GUI from 'lil-gui'
 
+// importing rectAreaHelper
+import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js'
+
 /**
  * Base
  */
@@ -17,14 +20,61 @@ const scene = new THREE.Scene()
 /**
  * Lights
  */
-const ambientLight = new THREE.AmbientLight(0xffffff, 1.5)
+const ambientLight = new THREE.AmbientLight()
+ambientLight.color = new THREE.Color(0xffffff)
+ambientLight.intensity = 0.5
 scene.add(ambientLight)
 
-const pointLight = new THREE.PointLight(0xffffff, 50)
-pointLight.position.x = 2
-pointLight.position.y = 3
-pointLight.position.z = 4
+const directionLight = new THREE.DirectionalLight( 0xf0f000 , 1)
+directionLight.position.set(1 , 0.2 , 1)
+scene.add(directionLight)
+
+const hemisphereLight = new THREE.HemisphereLight( 0xff0000 , 0x0000ff , 1)
+scene.add(hemisphereLight)
+
+const pointLight = new THREE.PointLight()
+pointLight.intensity = 0.5
+pointLight.position.set(1 , 0 , 1)
 scene.add(pointLight)
+
+// the reactAreaLight is only work with the MeshStandardMaterial and MeshPhysicalMaterial.
+// it has four parameter color , intensity , width and height.
+const rectAreaLight = new THREE.RectAreaLight( 0x00ff00 , 2 , 1 , 1 )
+rectAreaLight.position.set(-1.5 , 0 , 1.5)
+rectAreaLight.lookAt(new THREE.Vector3())
+scene.add(rectAreaLight)
+
+// like a flash light
+// it has four parameter color, intensity, distance , angle, penumbra , decay.
+const spotLight = new THREE.SpotLight(0x78ff00 , 2 , 10 , Math.PI*0.1 ,0.25, 1)
+spotLight.position.set(0 , 2 , 3)
+spotLight.target.position.x = -0.75
+scene.add(spotLight)
+scene.add(spotLight.target)
+
+// Helpers { for helping in positioning the light like a wireframe for a light.}
+const hemisphereLightHelper = new THREE.HemisphereLightHelper(hemisphereLight , 0.2)
+scene.add(hemisphereLightHelper)
+
+const directionLightHelper = new THREE.DirectionalLightHelper(directionLight , 0.2)
+scene.add(directionLightHelper)
+
+const pointLightHelper = new THREE.PointLightHelper(pointLight , 0.2)
+scene.add(pointLightHelper)
+
+// note : The spot light helper has no size 
+const spotLightHelper = new THREE.SpotLightHelper(spotLight)
+scene.add(spotLightHelper)
+// we also need to call its update(...) method on the next frame after moving the target
+window.requestAnimationFrame(() => {
+    spotLightHelper.update()
+})
+
+// realAreaLightHelper is not part of three js library so we must import it
+const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight)
+scene.add(rectAreaLightHelper)
+
+
 
 /**
  * Objects

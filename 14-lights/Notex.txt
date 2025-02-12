@@ -1,0 +1,15 @@
+Light can cost a lot when it comes to performance try to add as few light as possible and try to use the lights that costs less.
+
+Minimal cost light 
+. Ambient light
+. Hemisphere Light
+
+Moderate cost light
+. Directional Light
+. PointLight
+
+High cost
+. Spot light
+. React Area light
+
+The idea is to bake the light into a 3d texture . This can be done by 3d software. But the drawback is that we cannot move the light anymore and we have to load huge textures. 
