@@ -21,3 +21,5 @@ Shadow map algorithm:-
    . THREE.PCFSoftShadowMap - less performant but even softer edges
    . THREE.VSMShadowMap - Less performant more constraints can have unexpected results
 Check renderer section for adding the algorithm
+
+A good alternative to three js shadows is baked shadows. We integrate shadows in texture that we apply on materials.
