@@ -1,0 +1,25 @@
+The dark shadow in the back of the object are called core shadows. it is Default shadows.
+What are we missing are the drop shadows.
+Shadows: It is real time challenge for 3d rendering and developers must find tricks to display realistic shadows at a responsible frame rate.
+
+1. When we do one render Three.js will do a render for each light supporting shadows.
+2. Those renders will simulate what the light sees as if it was a camera.
+3. During these lights render a meshdepthMaterial replaces all meshes material. 
+4. the lights Render are stored as textures and we call those shadow maps.
+
+we have a plane ,a object , an ambientlight and directional light.
+
+Activate the shadow map on the render.
+only following type of light support shadows
+   . Pointlight
+   . directionalight
+   . Spotlight
+
+Shadow map algorithm:-
+   . THREE.BasicShadowMap - very performant but lousy quality
+   . THREE.PCFShadowMap - less performant but smoother edges (default)
+   . THREE.PCFSoftShadowMap - less performant but even softer edges
+   . THREE.VSMShadowMap - Less performant more constraints can have unexpected results
+Check renderer section for adding the algorithm
+
+A good alternative to three js shadows is baked shadows. We integrate shadows in texture that we apply on materials.
