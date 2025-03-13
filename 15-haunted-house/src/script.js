@@ -8,7 +8,6 @@ import GUI from 'lil-gui'
  */
 // Debug
 const gui = new GUI()
-
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -18,23 +17,63 @@ const scene = new THREE.Scene()
 /**
  * House
  */
-// Temporary sphere
-const sphere = new THREE.Mesh(
-    new THREE.SphereGeometry(1, 32, 32),
-    new THREE.MeshStandardMaterial({ roughness: 0.7 })
+const house = new THREE.Group()
+scene.add(house)
+
+//walls
+const walls = new THREE.Mesh(
+    new THREE.BoxGeometry(4,2,4),
+    new THREE.MeshStandardMaterial({ color : '#ac8e82'})
 )
-scene.add(sphere)
+walls.position.y = 1
+const roof = new THREE.Mesh(
+    new THREE.ConeGeometry(3.5,1,4),
+    new THREE.MeshStandardMaterial({color : '#b35f45'})
+)
+roof.rotation.y = Math.PI*0.25
+roof.position.y = 2.5
+
+const door = new THREE.Mesh(
+    new THREE.PlaneGeometry(1, 1.5),
+    new THREE.MeshStandardMaterial({})
+)
+door.position.z = 2 + 0.001
+door.position.y = 0.7
+
+const bushGeometry = new THREE.SphereGeometry(1, 16 , 16)
+const bustMaterial = new THREE.MeshStandardMaterial({color : '#89c854'})
+
+const bush1 = new THREE.Mesh(bushGeometry, bustMaterial)
+bush1.scale.set(0.5, 0.5 ,0.5)
+bush1.position.set(0.8 ,0.2 ,2.4 )
+const bush2 = new THREE.Mesh(bushGeometry, bustMaterial)
+bush1.scale.set(0.5, 0.5 ,0.5)
+bush1.position.set(0.8 ,0.2 ,2.4 )
+const bush3 = new THREE.Mesh(bushGeometry, bustMaterial)
+bush1.scale.set(0.5, 0.5 ,0.5)
+bush1.position.set(0.8 ,0.2 ,2.4 )
+house.add(walls , roof , door, bush1)
+const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(20 , 20),
+    new THREE.MeshBasicMaterial({
+        color: '#a9c389'
+    })
+)
+floor.rotation.x = -Math.PI* 0.5
+scene.add(floor)
 
 /**
  * Lights
  */
 // Ambient light
-const ambientLight = new THREE.AmbientLight('#ffffff', 0.5)
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.4)
+gui.add(ambientLight, 'intensity').min(0).max(3).step(0.001)
 scene.add(ambientLight)
 
 // Directional light
-const directionalLight = new THREE.DirectionalLight('#ffffff', 1.5)
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4)
 directionalLight.position.set(3, 2, -8)
+gui.add(directionalLight, 'intensity').min(0).max(3).step(0.001)
 scene.add(directionalLight)
 
 /**
